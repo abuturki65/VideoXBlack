@@ -52,7 +52,7 @@
 ## Heroku Deployment 💜
 The easy way to host this bot, deploy to Heroku, Change the app country to Europe (it will help to make the bot stable).
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://github.com/MostafaShalaby1/VideoXBlack)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://github.com/MostafaShalaby1)
 
 ## VPS Deployment 📡
 
