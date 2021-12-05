@@ -52,12 +52,12 @@ async def _human_time_duration(seconds):
 )
 async def start_(client: Client, message: Message):
     await message.reply_text(
-        f"""✨ **Welcome {message.from_user.mention()} !**\n
-💭 [{BOT_NAME}](https://t.me/{BOT_USERNAME}) **allows you to play music and video on groups through the new Telegram's video chats!**
+        f"""✨ **اهلا {message.from_user.mention()} !**\n
+💭 [{BOT_NAME}](https://t.me/{BOT_USERNAME}) **يسمح لك بتشغيل مقاطع او صوت او حتى بثوث مباشرة على الشات الصوتي!**
 
-💡 **Find out all the Bot's commands and how they work by clicking on the » 📚 Commands button!**
+💡 **لعرض قائمة الاوامر الخاصه بالبوت انقر على » 📚 الاوامر زر!**
 
-🔖 **To know how to use this bot, please click on the » ❓ Basic Guide button!**
+🔖 **لمعرفه كيف تستخدم البوت, الرجاء الضغط على » ❓ تعليمات الاستخدام زر!**
 """,
         reply_markup=InlineKeyboardMarkup(
             [
@@ -102,15 +102,15 @@ async def alive(client: Client, message: Message):
     keyboard = InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("✨ Group", url=f"https://t.me/{GROUP_SUPPORT}"),
+                InlineKeyboardButton("✨ مجموعه البوت", url=f"https://t.me/{GROUP_SUPPORT}"),
                 InlineKeyboardButton(
-                    "📣 Channel", url=f"https://t.me/{UPDATES_CHANNEL}"
+                    "📣 القناة", url=f"https://t.me/{UPDATES_CHANNEL}"
                 ),
             ]
         ]
     )
 
-    alive = f"**Hello {message.from_user.mention()}, i'm {BOT_NAME}**\n\n✨ Bot is working normally\n🍀 My Master: [{ALIVE_NAME}](https://t.me/{OWNER_NAME})\n✨ Bot Version: `v{__version__}`\n🍀 Pyrogram Version: `{pyrover}`\n✨ Python Version: `{__python_version__}`\n🍀 PyTgCalls version: `{pytover.__version__}`\n✨ Uptime Status: `{uptime}`\n\n**Thanks for Adding me here, for playing video & music on your Group video chat** ❤"
+    alive = f"**اهلا {message.from_user.mention()}, انا {BOT_NAME}**\n\n✨ البوت يعمل\n🍀 مطوري الاساسي: [{ALIVE_NAME}](https://t.me/{OWNER_NAME})\n✨ اصدار البوت: `v{__version__}`\n🍀 بايروجرام اصدار: `{pyrover}`\n✨ اصدار البايثون: `{__python_version__}`\n🍀 PyTgCalls اصدار: `{pytover.__version__}`\n✨ مدة تشغيل البوت: `{uptime}`\n\n**شكرا لاضافتي في مجموعتك** ❤"
 
     await message.reply_photo(
         photo=f"{ALIVE_IMG}",
@@ -133,7 +133,7 @@ async def get_uptime(client: Client, message: Message):
     uptime_sec = (current_time - START_TIME).total_seconds()
     uptime = await _human_time_duration(int(uptime_sec))
     await message.reply_text(
-        "🤖 bot status:\n"
-        f"• **uptime:** `{uptime}`\n"
-        f"• **start time:** `{START_TIME_ISO}`"
+        "🤖 حاله البوت :\n"
+        f"• **مدة تشغيل البوت:** `{uptime}`\n"
+        f"• **وقت بدء البوت:** `{START_TIME_ISO}`"
     )

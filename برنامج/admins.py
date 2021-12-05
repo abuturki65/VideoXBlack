@@ -19,7 +19,7 @@ async def update_admin(client, message):
         new_admins.append(u.user.id)
     admins[message.chat.id] = new_admins
     await message.reply_text(
-        "✅ Bot **reloaded correctly !**\n✅ **Admin list** has been **updated !**"
+        "✅ البوت **تم تحديث !**\n✅ **قائمة الادمنية** قد تم **تحديثه !**"
     )
 
 
@@ -31,10 +31,10 @@ async def skip(client, m: Message):
         [
             [
                 InlineKeyboardButton(
-                    text="✨ ɢʀᴏᴜᴘ", url=f"https://t.me/{GROUP_SUPPORT}"
+                    text="مجموعه البوت", url=f"https://t.me/{GROUP_SUPPORT}"
                 ),
                 InlineKeyboardButton(
-                    text="🌻 ᴄʜᴀɴɴᴇʟ", url=f"https://t.me/{UPDATES_CHANNEL}"
+                    text="القناة", url=f"https://t.me/{UPDATES_CHANNEL}"
                 ),
             ]
         ]
@@ -44,18 +44,18 @@ async def skip(client, m: Message):
     if len(m.command) < 2:
         op = await skip_current_song(chat_id)
         if op == 0:
-            await m.reply("❌ nothing is currently playing")
+            await m.reply("❌ لايوجد شي لعرضه")
         elif op == 1:
-            await m.reply("✅ __Queues__ is empty.\n\n• userbot leaving voice chat")
+            await m.reply("✅ __Queues__ is empty.\n\n• البوت يغادر الدردشه الصوتيه")
         else:
             await m.reply_photo(
                 photo=f"{IMG_3}",
-                caption=f"⏭ **Skipped to the next track.**\n\n🏷 **Name:** [{op[0]}]({op[1]})\n💭 **Chat:** `{chat_id}`\n💡 **Status:** `Playing`\n🎧 **Request by:** {m.from_user.mention()}",
+                caption=f"⏭ **تم التخطي الى المسار التالي.**\n\n🏷 **الاسم:** [{op[0]}]({op[1]})\n💭 **الدردشه:** `{chat_id}`\n💡 **الحاله:** `Playing`\n🎧 **تم طلبه من قبل:** {m.from_user.mention()}",
                 reply_markup=keyboard,
             )
     else:
         skip = m.text.split(None, 1)[1]
-        OP = "🗑 **removed song from queue:**"
+        OP = "🗑 **تم حذفه من القائمة:**"
         if chat_id in QUEUE:
             items = [int(x) for x in skip.split(" ") if x.isdigit()]
             items.sort(reverse=True)
@@ -82,11 +82,11 @@ async def stop(client, m: Message):
         try:
             await call_py.leave_group_call(chat_id)
             clear_queue(chat_id)
-            await m.reply("✅ **streaming has ended.**")
+            await m.reply("✅ **انتهى البث.**")
         except Exception as e:
-            await m.reply(f"🚫 **error:**\n\n`{e}`")
+            await m.reply(f"🚫 **خطأ:**\n\n`{e}`")
     else:
-        await m.reply("❌ **nothing in streaming**")
+        await m.reply("❌ **لايوجد بث**")
 
 
 @Client.on_message(
@@ -99,12 +99,12 @@ async def pause(client, m: Message):
         try:
             await call_py.pause_stream(chat_id)
             await m.reply(
-                "⏸ **Track paused.**\n\n• **To resume the stream, use the**\n» /resume command."
+                "⏸ **المسار متوقف.**\n\n• **لاستمرار البث اضغط على**\n» /resume الامر."
             )
         except Exception as e:
-            await m.reply(f"🚫 **error:**\n\n`{e}`")
+            await m.reply(f"🚫 **خطأ:**\n\n`{e}`")
     else:
-        await m.reply("❌ **nothing in streaming**")
+        await m.reply("❌ **لايوجد بث**")
 
 
 @Client.on_message(
@@ -117,12 +117,12 @@ async def resume(client, m: Message):
         try:
             await call_py.resume_stream(chat_id)
             await m.reply(
-                "▶️ **Track resumed.**\n\n• **To pause the stream, use the**\n» /pause command."
+                "▶️ **المسار مستمر.**\n\n• **لايقاف البث مؤقتا اضغط على**\n» /pause الامر."
             )
         except Exception as e:
-            await m.reply(f"🚫 **error:**\n\n`{e}`")
+            await m.reply(f"🚫 **خطأ:**\n\n`{e}`")
     else:
-        await m.reply("❌ **nothing in streaming**")
+        await m.reply("❌ **لايوجد بث**")
 
 
 @Client.on_message(
@@ -135,12 +135,12 @@ async def mute(client, m: Message):
         try:
             await call_py.mute_stream(chat_id)
             await m.reply(
-                "🔇 **Userbot muted.**\n\n• **To unmute the userbot, use the**\n» /unmute command."
+                "🔇 **البوت مكتوم.**\n\n• **لالغاء**\n» /unmute الامر."
             )
         except Exception as e:
-            await m.reply(f"🚫 **error:**\n\n`{e}`")
+            await m.reply(f"🚫 **خطأ:**\n\n`{e}`")
     else:
-        await m.reply("❌ **nothing in streaming**")
+        await m.reply("❌ **لايوجد بث**")
 
 
 @Client.on_message(
@@ -153,12 +153,12 @@ async def unmute(client, m: Message):
         try:
             await call_py.unmute_stream(chat_id)
             await m.reply(
-                "🔊 **Userbot unmuted.**\n\n• **To mute the userbot, use the**\n» /mute command."
+                "🔊 **البوت غير مكتوم.**\n\n• **لكتم البوت اضغط على**\n» /mute الامر."
             )
         except Exception as e:
-            await m.reply(f"🚫 **error:**\n\n`{e}`")
+            await m.reply(f"🚫 **خطأ:**\n\n`{e}`")
     else:
-        await m.reply("❌ **nothing in streaming**")
+        await m.reply("❌ **لايوجد بث**")
 
 
 @Client.on_message(
@@ -170,6 +170,6 @@ async def change_volume(client, m: Message):
     chat_id = m.chat.id
     try:
         await call_py.change_volume_call(chat_id, volume=int(range))
-        await m.reply(f"✅ **volume set to** `{range}`%")
+        await m.reply(f"✅ **تم ضبط مستوى الصوت الى** `{range}`%")
     except Exception as e:
-        await m.reply(f"🚫 **error:**\n\n{e}")
+        await m.reply(f"🚫 **خطأ:**\n\n{e}")
